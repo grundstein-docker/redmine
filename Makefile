@@ -43,19 +43,4 @@ ip:
 
 # help output
 help:
-	@echo "\
-Usage \n\
-make TASK\n\
-
-TASKS:
-	dev     - build then tail logs
-	build   - docker build container
-	run     - docker run container
-	debug   - connect to docker container
-	logs    - tail docker container logs
-	rm      - remove docker container
-	stop    - stop docker container
-	backup  - run gitlab backup task
-\n\
-	help      - this help text \n\
-"
+	@./cli.sh help
