@@ -49,7 +49,9 @@ function run() {
     --env='REDMINE_BACKUP_SCHEDULE=daily' \
     sameersbn/redmine:3.2.0-4
 
-  echo "started docker container"
+  ip
+
+  echo "started docker container $CONTAINER_NAME"
 }
 
 function backup() {
