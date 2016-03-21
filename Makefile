@@ -38,6 +38,8 @@ stop:
 backup:
 	@./cli.sh backup
 
+ip:
+	@./cli.sh ip
 
 # help output
 help:
