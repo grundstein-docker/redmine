@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source ./ENV.sh
-source ./IPS.sh
 source ../../bin/tasks.sh
 
 echo "container: $CONTAINER_NAME"
@@ -71,7 +70,7 @@ function backup() {
     --env="DB_USER=$REDMINE_DB_USER" \
     --env="DB_PASS=$REDMINE_DB_PASS" \
     --env="DB_ADAPTER=postgresql" \
-    --env="DB_HOST=$MAGIC_POSTGRES_IP" \
+    --env="DB_HOST=$(cat ../postgres/SERVER_IP)" \
     --env="DB_PORT=$POSTGRES_PORT" \
     sameersbn/redmine:3.2.0-4 app:backup:create
 
