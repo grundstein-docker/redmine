@@ -34,8 +34,8 @@ function run() {
     --hostname $HOSTNAME \
     --publish $HOST_PORT_80:$CONTAINER_PORT_80 \
     --name $CONTAINER_NAME \
-    --volume=$PWD/data:/home/redmine/data \
-    --volume=$PWD/logs:/home/redmine/redmine/log/ \
+    --volume=$DATA_DIR/redmine/data:/home/redmine/data \
+    --volume=$DATA_DIR/redmine/logs:/home/redmine/redmine/log/ \
     --link $POSTGRES_CONTAINER_NAME:postgres \
     --env="DB_NAME=$REDMINE_DB_NAME" \
     --env="DB_USER=$REDMINE_DB_USER" \
@@ -63,8 +63,8 @@ function backup() {
     --interactive \
     --tty \
     --rm \
-    --volume=$PWD/data:/home/redmine/data \
-    --volume=$PWD/logs:/home/redmine/redmine/log/ \
+    --volume=$DATA_DIR/redmine/data:/home/redmine/data \
+    --volume=$DATA_DIR/redmine/logs:/home/redmine/redmine/log/ \
     --link $POSTGRES_CONTAINER_NAME:postgres \
     --env="DB_NAME=$REDMINE_DB_NAME" \
     --env="DB_USER=$REDMINE_DB_USER" \
