@@ -6,28 +6,28 @@ source ../../bin/tasks.sh
 echo "container: $CONTAINER_NAME"
 
 function build() {
-  echo "building: $CONTAINER_NAME"
+  echo-start "build"
 
   docker pull sameersbn/redmine:3.2.0-4
 
-  mkdir -p ./data/plugins
+  mkdir -p $DATA_DIR/plugins
 
-  #if [ -d "./data/plugins/redmine_milestones" ]; then
+  #if [ -d "$DATA_DIR/plugins/redmine_milestones" ]; then
   #  echo "redmine_milestones already installed"
   #else
   #  git clone \
   #    git://github.com/k41n/redmine_milestones.git \
-  #    ./data/plugins/redmine_milestones \
+  #    $DATA_DIR/plugins/redmine_milestones \
   #  || echo "milestones plugin already downloaded"
   #fi
 
-  echo "build finished"
+  echo-finished "build"
 }
 
 function run() {
   remove
 
-  echo "run $CONTAINER_NAME"
+  echo-start "run"
 
   docker run \
     --detach \
@@ -50,11 +50,11 @@ function run() {
 
   ip
 
-  echo "started docker container $CONTAINER_NAME"
+  echo-finished "run"
 }
 
 function backup() {
-  echo "backup $CONTAINER_NAME"
+  echo-start "backup"
 
   remove
 
@@ -74,7 +74,10 @@ function backup() {
     --env="DB_PORT=$POSTGRES_PORT" \
     sameersbn/redmine:3.2.0-4 app:backup:create
 
+  build
   run
+
+  echo-finished "backup"
 }
 
 function help() {
