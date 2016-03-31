@@ -8,7 +8,7 @@ source ../../bin/tasks.sh
 echo "container: $CONTAINER_NAME"
 
 function install-plugin() {
-  plugin_dir=$1
+  plugin_dir=$DATA_DIR/redmine/data/plugins/$1
   plugin_url=$2
 
   if [ -d $plugin_dir ]; then
@@ -27,13 +27,13 @@ function build() {
 
   mkdir -p $DATA_DIR/plugins
 
-  install-plugin "$DATA_DIR/plugins/redmine_multi_calendar" "https://github.com/ksfltd/redmine_multi_calendar.git"
+  install-plugin "redmine_multi_calendar" "https://github.com/ksfltd/redmine_multi_calendar.git"
 
-  install-plugin "$DATA_DIR/plugins/redmine_kanban" "https://github.com/edavis10/redmine_kanban.git"
+  install-plugin "redmine_kanban" "https://github.com/edavis10/redmine_kanban.git"
 
-  install-plugin "$DATA_DIR/plugins/redmine_tags" "https://github.com/ixti/redmine_tags.git"
+  install-plugin "redmine_tags" "https://github.com/ixti/redmine_tags.git"
 
-  install-plugin "$DATA_DIR/plugins/redmine-budget-plugin" "https://github.com/edavis10/redmine-budget-plugin.git"
+  install-plugin "redmine-budget-plugin" "https://github.com/edavis10/redmine-budget-plugin.git"
 
   echo-finished "build"
 }
