@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VERSION=3.2.1-2
+
 source ./ENV.sh
 source ../../bin/tasks.sh
 
@@ -8,7 +10,7 @@ echo "container: $CONTAINER_NAME"
 function build() {
   echo-start "build"
 
-  docker pull sameersbn/redmine:3.2.0-4
+  docker pull sameersbn/redmine:$VERSION
 
   mkdir -p $DATA_DIR/plugins
 
@@ -46,7 +48,7 @@ function run() {
     --env='REDMINE_SUDO_MODE_ENABLED=true' \
     --env='REDMINE_FETCH_COMMITS=hourly' \
     --env='REDMINE_BACKUP_SCHEDULE=daily' \
-    sameersbn/redmine:3.2.0-4
+    sameersbn/redmine:$VERSION
 
   ip
 
@@ -72,7 +74,7 @@ function backup() {
     --env="DB_ADAPTER=postgresql" \
     --env="DB_HOST=$(cat ../postgres/SERVER_IP)" \
     --env="DB_PORT=$POSTGRES_PORT" \
-    sameersbn/redmine:3.2.0-4 app:backup:create
+    sameersbn/redmine:$VERSION app:backup:create
 
   build
   run
