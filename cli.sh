@@ -7,6 +7,19 @@ source ../../bin/tasks.sh
 
 echo "container: $CONTAINER_NAME"
 
+function install-plugin() {
+  plugin_dir=$1
+  plugin_url=$2
+
+  if [ -d $plugin_dir ]; then
+    echo "$plugin_dir already installed"
+  else
+    git clone \
+     $plugin_url  \
+     $plugin_dir
+  fi
+}
+
 function build() {
   echo-start "build"
 
@@ -14,14 +27,13 @@ function build() {
 
   mkdir -p $DATA_DIR/plugins
 
-  #if [ -d "$DATA_DIR/plugins/redmine_milestones" ]; then
-  #  echo "redmine_milestones already installed"
-  #else
-  #  git clone \
-  #    git://github.com/k41n/redmine_milestones.git \
-  #    $DATA_DIR/plugins/redmine_milestones \
-  #  || echo "milestones plugin already downloaded"
-  #fi
+  install-plugin "$DATA_DIR/plugins/redmine_multi_calendar" "https://github.com/ksfltd/redmine_multi_calendar.git"
+
+  install-plugin "$DATA_DIR/plugins/redmine_kanban" "https://github.com/edavis10/redmine_kanban.git"
+
+  install-plugin "$DATA_DIR/plugins/redmine_tags" "https://github.com/ixti/redmine_tags.git"
+
+  install-plugin "$DATA_DIR/plugins/redmine-budget-plugin" "https://github.com/edavis10/redmine-budget-plugin.git"
 
   echo-finished "build"
 }
