@@ -27,6 +27,8 @@ function build() {
 
   mkdir -p $DATA_DIR/plugins
 
+  install-plugin "redmine_rate" "edavis10/redmine_rate.git"
+
   install-plugin "redmine_multi_calendar" "ksfltd/redmine_multi_calendar.git"
 
   install-plugin "redmine_kanban" "edavis10/redmine_kanban.git"
@@ -34,8 +36,6 @@ function build() {
   install-plugin "redmine_tags" "ixti/redmine_tags.git"
 
   install-plugin "redmine-budget-plugin" "edavis10/redmine-budget-plugin.git"
-
-  install-plugin "redmine_rate" "edavis10/redmine_rate.git"
 
   install-plugin "redmine_milestones" "k41n/redmine_milestones.git"
 
