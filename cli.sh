@@ -35,7 +35,7 @@ function build() {
 
   install-plugin "redmine-budget-plugin" "edavis10/redmine-budget-plugin.git"
 
-  install-plugin "redmine_rage" "edavis10/redmine_rate.git"
+  install-plugin "redmine_rate" "edavis10/redmine_rate.git"
 
   install-plugin "redmine_milestones" "k41n/redmine_milestones.git"
 
