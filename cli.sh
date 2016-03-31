@@ -9,7 +9,7 @@ echo "container: $CONTAINER_NAME"
 
 function install-plugin() {
   plugin_dir=$DATA_DIR/redmine/data/plugins/$1
-  plugin_url=$2
+  plugin_url=https://github.com/$2
 
   if [ -d $plugin_dir ]; then
     echo "$plugin_dir already installed"
@@ -27,13 +27,17 @@ function build() {
 
   mkdir -p $DATA_DIR/plugins
 
-  install-plugin "redmine_multi_calendar" "https://github.com/ksfltd/redmine_multi_calendar.git"
+  install-plugin "redmine_multi_calendar" "ksfltd/redmine_multi_calendar.git"
 
-  install-plugin "redmine_kanban" "https://github.com/edavis10/redmine_kanban.git"
+  install-plugin "redmine_kanban" "edavis10/redmine_kanban.git"
 
-  install-plugin "redmine_tags" "https://github.com/ixti/redmine_tags.git"
+  install-plugin "redmine_tags" "ixti/redmine_tags.git"
 
-  install-plugin "redmine-budget-plugin" "https://github.com/edavis10/redmine-budget-plugin.git"
+  install-plugin "redmine-budget-plugin" "edavis10/redmine-budget-plugin.git"
+
+  install-plugin "redmine_rage" "edavis10/redmine_rate.git"
+
+  install-plugin "redmine_milestones" "k41n/redmine_milestones.git"
 
   echo-finished "build"
 }
