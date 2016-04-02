@@ -8,11 +8,16 @@ source ../../bin/tasks.sh
 echo "container: $CONTAINER_NAME"
 
 function install-plugin() {
-  plugin_dir=$DATA_DIR/redmine/data/plugins/$1
-  plugin_url=https://github.com/$2
+  plugin_name=$1
+  plugin_git=$2
+  plugin_dir=$DATA_DIR/redmine/data/plugins/$plugin_name
+  plugin_url=https://github.com/$plugin_git
 
   if [ -d $plugin_dir ]; then
-    echo "$plugin_dir already installed"
+    echo "$plugin_name already installed"
+    cur_pwd=$PWD
+    cd $plugin_dir && git pull
+    cd $cur_pwd
   else
     git clone \
      $plugin_url  \
@@ -27,17 +32,7 @@ function build() {
 
   mkdir -p $DATA_DIR/plugins
 
-  install-plugin "redmine_rate" "edavis10/redmine_rate.git"
-
-  install-plugin "redmine_multi_calendar" "ksfltd/redmine_multi_calendar.git"
-
-  install-plugin "redmine_kanban" "edavis10/redmine_kanban.git"
-
-  install-plugin "redmine_tags" "ixti/redmine_tags.git"
-
-  install-plugin "redmine-budget-plugin" "edavis10/redmine-budget-plugin.git"
-
-  install-plugin "redmine_milestones" "k41n/redmine_milestones.git"
+  # install-plugin "redmine_rate" "edavis10/redmine_rate.git"
 
   echo-finished "build"
 }
