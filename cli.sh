@@ -59,6 +59,8 @@ function run() {
     --env='REDMINE_SUDO_MODE_ENABLED=true' \
     --env='REDMINE_FETCH_COMMITS=hourly' \
     --env='REDMINE_BACKUP_SCHEDULE=daily' \
+    --env "SMTP_USER=$REDMINE_SMTP_USER" \
+    --env "SMTP_PASS=$REDMINE_SMTP_PASS" \
     sameersbn/redmine:$VERSION
 
   ip
