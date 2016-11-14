@@ -1,6 +1,7 @@
 #!/bin/bash
 
-VERSION=3.2.1-2
+VERSION=3.3.1
+IP=172.18.0.4
 
 source ./ENV.sh
 source ../../bin/tasks.sh
@@ -42,7 +43,7 @@ function run() {
 
   echo-start "run"
 
-  docker run \
+ docker run \
     --detach \
     --hostname $HOSTNAME \
     --publish $HOST_PORT_80:$CONTAINER_PORT_80 \
@@ -62,9 +63,11 @@ function run() {
     --env='REDMINE_BACKUP_SCHEDULE=daily' \
     --env "SMTP_USER=$REDMINE_SMTP_USER" \
     --env "SMTP_PASS=$REDMINE_SMTP_PASS" \
+    --net user-defined \
+    --ip $IP \
     sameersbn/redmine:$VERSION
 
-  ip
+  ip $IP
 
   echo-finished "run"
 }
